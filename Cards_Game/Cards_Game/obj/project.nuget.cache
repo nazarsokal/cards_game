@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qsPdbzpz6pJ4U84RAeE65fboHeK0PBqBR5P3tdSJ0Njx5H1ZouHynLbG9q2cRpi/8XDxYfRoKFN6YMN3zZEjfw==",
+  "dgSpecHash": "DBIZhynPqfgT5Kt4JEzwsZKvxYQmUuD/nhZJo/jc0+8Ty50jSgYAzTuYinn3XQ7wJdSTzc0O6OEQs7SvISq5qQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\Cards_Game.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\nazar\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,17 @@
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Cards_Game.exe
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Cards_Game.deps.json
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Cards_Game.runtimeconfig.json
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Cards_Game.dll
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Cards_Game.pdb
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.csproj.AssemblyReference.cache
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.AssemblyInfoInputs.cache
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.AssemblyInfo.cs
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.csproj.CoreCompileInputs.cache
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.csproj.CopyComplete
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.dll
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\refint\Cards_Game.dll
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.pdb
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\Cards_Game.genruntimeconfig.cache
+C:\Users\nazar\OneDrive\Documents\GitHub\cards_game\Cards_Game\Cards_Game\obj\Debug\net6.0\ref\Cards_Game.dll
