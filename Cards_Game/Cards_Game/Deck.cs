@@ -28,7 +28,15 @@ namespace Cards_Game
 				}
 			}
 
-			return cards_list;
+            for (int i = cards_list.Count - 1; i >= 1; i--)
+            {
+                int j = random.Next(i + 1);
+                var temp = cards_list[j];
+                cards_list[j] = cards_list[i];
+                cards_list[i] = temp;
+            }
+
+            return cards_list;
 		}
 		public static void RemoveCards(Card card)
 		{
