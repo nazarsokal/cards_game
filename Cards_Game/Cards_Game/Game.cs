@@ -19,11 +19,15 @@ namespace Cards_Game
             player_count= _player_count;
             Add_players();
             DivideCardsByPlayers();
-            /*for(var i = 0; i < players_list.Count; i++)
+            for(var i = 0; i < players_list.Count; i++)
             {
                 try
                 {
-                    players_list[i].attack();
+                    List<Card> res = players_list[i].attack();
+                    foreach(var a in res)
+                    {
+                        Console.WriteLine($"{a.Symbol}{a.Suit}{a.IsTrump}");
+                    }
                     players_list[i + 1].deffend();
 
                 }
@@ -32,7 +36,7 @@ namespace Cards_Game
                     players_list[0].deffend();
                     //i = 0;
                 }
-            }*/
+            }
         }
 
         public void DivideCardsByPlayers()

@@ -9,13 +9,6 @@ namespace Cards_Game
         public static void Main(string[] args)
         {
             Game game = new Game(5);
-            var i = 1;
-            foreach (var j in game.GetCards())
-            {
-                Console.WriteLine($"{j.Symbol} {j.Suit} {j.IsTrump} {i}");
-                i++;
-            }
-            Console.WriteLine();
             foreach (var k in game.GetPlayers())
             {
                 foreach(var j in k.GetListCards())
@@ -31,5 +24,11 @@ namespace Cards_Game
 }
 
 /*
- * 
+ *             var i = 1;
+            foreach (var j in game.GetCards())
+            {
+                Console.WriteLine($"{j.Symbol} {j.Suit} {j.IsTrump} {i}");
+                i++;
+            }
+            }
             */
