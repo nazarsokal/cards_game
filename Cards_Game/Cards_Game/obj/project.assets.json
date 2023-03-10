@@ -1621,24 +1621,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nazar\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Nazar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\Cards_Game.csproj",
+      "projectUniqueName": "C:\\Users\\Nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\Cards_Game.csproj",
       "projectName": "Cards_Game",
-      "projectPath": "C:\\Users\\nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\Cards_Game.csproj",
-      "packagesPath": "C:\\Users\\nazar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\obj\\",
+      "projectPath": "C:\\Users\\Nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\Cards_Game.csproj",
+      "packagesPath": "C:\\Users\\Nazar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nazar\\OneDrive\\Documents\\GitHub\\cards_game\\Cards_Game\\Cards_Game\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\nazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Nazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1689,7 +1684,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

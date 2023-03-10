@@ -23,15 +23,16 @@ namespace Cards_Game
                 {
                     if(card_from_user == "f" && CardsList_From_User.Count != 0)
                     {
+                        for(var i = 0; i < CardsList_From_User.Count; i++)
+                        {
+                            ListCards.Remove(CardsList_From_User[i]);
+                        }
                         return CardsList_From_User;
                     }
                     else if(card_from_user != "f")
                     {
                         if(CardsList_From_User.Count >= 1)
                         {
-                            //CardsList_From_User[iter--].Symbol
-                            Console.WriteLine("Size: " + CardsList_From_User.Count);
-                            Console.WriteLine("Number: " + (iter - 1));
                             if (ListCards[Convert.ToInt32(card_from_user)].Symbol == CardsList_From_User[iter-1].Symbol)
                             {
                                 CardsList_From_User.Add(ListCards[Convert.ToInt32(card_from_user)]);
@@ -57,10 +58,9 @@ namespace Cards_Game
             return null;
         }
 
-        public void deffend() 
+        public void deffend(List<Card> attacked_list) 
         {
-            Console.WriteLine("Defend");
-            Console.WriteLine();
+
         }
 
         public void PrintPlayersCards()

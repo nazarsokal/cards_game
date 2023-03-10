@@ -24,11 +24,8 @@ namespace Cards_Game
                 try
                 {
                     List<Card> res = players_list[i].attack();
-                    foreach(var a in res)
-                    {
-                        Console.WriteLine($"{a.Symbol}{a.Suit}{a.IsTrump}");
-                    }
-                    players_list[i + 1].deffend();
+      
+                    players_list[i + 1].deffend(res);
 
                 }
                 catch(Exception e)
