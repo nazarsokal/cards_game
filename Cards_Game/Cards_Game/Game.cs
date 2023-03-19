@@ -19,20 +19,37 @@ namespace Cards_Game
             player_count= _player_count;
             Add_players();
             DivideCardsByPlayers();
-            for(var i = 0; i < players_list.Count; i++)
+            var i = 0;
+            while(players_list.Count != 1)
             {
-                try
+                Console.WriteLine($"Player: {players_list[i].Name} attacks");
+                List<Card> res = players_list[i].attack();
+                if(i == (players_list.Count - 1))
                 {
-                    List<Card> res = players_list[i].attack();
-      
+                    Console.WriteLine($"Player: {players_list[0].Name} deffends");
+                    players_list[0].deffend(res);
+                    i = 0;
+                }
+                else
+                {
+                    Console.WriteLine($"Player: {players_list[i + 1].Name} deffends");
                     players_list[i + 1].deffend(res);
+                    if (players_list[i + 1].isTook && (i + 1) != (players_list.Count - 1))
+                    {
+                        i++;
+                    }
+                    else if(players_list[i + 1].isTook && (i + 1) == (players_list.Count - 1))
+                    {
+                        i = -1;
+                    }
 
                 }
-                catch(Exception e)
+
+                if (cards_list.Count != 0)
                 {
-                    players_list[0].deffend();
-                    //i = 0;
+                    DivideCardsByPlayers();
                 }
+                i++;
             }
         }
 
@@ -41,21 +58,25 @@ namespace Cards_Game
             int num = 0;
             for (var i = 0; i < players_list.Count; i++)
             {
-                while(players_list[i].GetListCards().Count != 6)
+                if(players_list[i].GetListCards().Count < 6)
                 {
-                    players_list[i].setListCards(cards_list[num]);
-                    Remove_Cards(cards_list[num]);
-                    num++;
+                    while (players_list[i].GetListCards().Count != 6)
+                    {
+                        players_list[i].setListCards(cards_list[num]);
+                        Remove_Cards(cards_list[num]);
+                        num++;
+                    }
+                    num = 0;
                 }
-                num = 0;
             }
         }
 
         public void Add_players()
-        {            
+        {
+            List<string> names = new List<string>() { "Roman", "Nazar", "Yurko" };
             for(var i = 0; i < player_count; i++)
             {
-                players_list.Add(new Player());
+                players_list.Add(new Player(names[i]));
             }
         }
 

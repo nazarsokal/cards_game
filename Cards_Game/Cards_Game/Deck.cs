@@ -18,11 +18,11 @@ namespace Cards_Game
 				{
 					if(r == i)
 					{
-                        cards_list.Add(new Card(suit_symbols[i], card_symbols[j], true));
+                        cards_list.Add(new Card(suit_symbols[i], card_symbols[j], true, j));
                     }
 					else
 					{
-                        cards_list.Add(new Card(suit_symbols[i], card_symbols[j], false));
+                        cards_list.Add(new Card(suit_symbols[i], card_symbols[j], false, j));
                     }
 
 				}
