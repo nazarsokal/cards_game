@@ -24,16 +24,19 @@ namespace Cards_Game
             {
                 Console.WriteLine($"Player: {players_list[i].Name} attacks");
                 List<Card> res = players_list[i].attack();
+                List<Card> def_res;
+                List<Player> buffer_player_list = new List<Player>();
                 if(i == (players_list.Count - 1))
                 {
                     Console.WriteLine($"Player: {players_list[0].Name} deffends");
-                    players_list[0].deffend(res);
-                    i = 0;
+                    def_res = players_list[0].deffend(res);
+                    i = -1;
                 }
                 else
                 {
                     Console.WriteLine($"Player: {players_list[i + 1].Name} deffends");
-                    players_list[i + 1].deffend(res);
+                    def_res = players_list[i + 1].deffend(res);
+
                     if (players_list[i + 1].isTook && (i + 1) != (players_list.Count - 1))
                     {
                         i++;
@@ -42,7 +45,25 @@ namespace Cards_Game
                     {
                         i = -1;
                     }
+                    else
+                    {
+                        List<Card> thrown_cards = new List<Card>();
+                        List<Card> throw_res = new List<Card>();
+                        buffer_player_list.AddRange(players_list);
+                        buffer_player_list.RemoveAt(i + 1);
 
+                        for(var j = 0; j <  buffer_player_list.Count; j++)
+                        {
+                            throw_res = buffer_player_list[j].throwUpCards(res, def_res, buffer_player_list[j].Name);
+                            foreach (var item in throw_res)
+                            {
+                                thrown_cards.Add(item);
+                            }
+                        }
+
+                        if(thrown_cards.Count != 0)
+                            def_res = players_list[i + 1].deffend(thrown_cards);
+                    }
                 }
 
                 if (cards_list.Count != 0)
@@ -73,7 +94,7 @@ namespace Cards_Game
 
         public void Add_players()
         {
-            List<string> names = new List<string>() { "Roman", "Nazar", "Yurko" };
+            List<string> names = new List<string>() { "Roman", "Nazar", "Yurko", "Oleg", "Ashot"};
             for(var i = 0; i < player_count; i++)
             {
                 players_list.Add(new Player(names[i]));

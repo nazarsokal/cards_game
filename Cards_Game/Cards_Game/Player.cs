@@ -74,64 +74,98 @@ namespace Cards_Game
 
             while (true)
             {
-                if (attacked_list.Count == 0)
+                Console.WriteLine("To deffend choose a number of card. \n To finish defending choose 'f' or 't' to take cards \n Your cards: ");
+                PrintPlayersCards(ListCards);
+
+                Console.WriteLine("count: " + attacked_list.Count);
+                var card_from_user = Console.ReadLine();
+                if (card_from_user == "t")
                 {
-                    return defended_cards;
+                    for(var i = 0; i < attacked_list.Count; i++)
+                    {
+                        ListCards.Add(attacked_list[i]);
+                    }
+                    isTook = true;
+                    break;
+                }
+                else if(card_from_user == "f")
+                {
+                    if (defended_cards.Count != 0)
+                        return defended_cards;
                 }
                 else
                 {
-                    Console.WriteLine("To deffend choose a number of card. \n To finish defending choose 'f' or 't' to take cards \n Your cards: ");
-                    PrintPlayersCards(ListCards);
+                    var canBeRemoved = false;
 
-                    Console.WriteLine("count: " + attacked_list.Count);
-                    var card_from_user = Console.ReadLine();
-                    if (card_from_user == "t")
+                    for (var i = 0; i < attacked_list.Count; i++)
                     {
-                        for(var i = 0; i < attacked_list.Count; i++)
+                        if (ListCards[Convert.ToInt32(card_from_user)].Suit == attacked_list[i].Suit &&
+                            ListCards[Convert.ToInt32(card_from_user)].worth > attacked_list[i].worth)
                         {
-                            ListCards.Add(attacked_list[i]);
+                            canBeRemoved = true;
+                            defended_cards.Add(ListCards[Convert.ToInt32(card_from_user)]);
+                            //attacked_list.RemoveAt(i);
+                            ListCards.RemoveAt(Convert.ToInt32(card_from_user));
+                            isTook = false;
                         }
-                        isTook = true;
-                        break;
+                        else if (ListCards[Convert.ToInt32(card_from_user)].IsTrump && attacked_list[i].IsTrump == false)
+                        {
+                            canBeRemoved = true;
+                            defended_cards.Add(ListCards[Convert.ToInt32(card_from_user)]);
+                            //attacked_list.RemoveAt(i);
+                            ListCards.RemoveAt(Convert.ToInt32(card_from_user));
+                            isTook = false;
+                        }
+                        /*else
+                        {
+                            Console.WriteLine("Bad!!");
+                        }*/
                     }
-                    else
+                    if (canBeRemoved == false)
                     {
-                        var canBeRemoved = false;
-
-                        for (var i = 0; i < attacked_list.Count; i++)
-                        {
-                            if (ListCards[Convert.ToInt32(card_from_user)].Suit == attacked_list[i].Suit &&
-                                ListCards[Convert.ToInt32(card_from_user)].worth > attacked_list[i].worth)
-                            {
-                                canBeRemoved = true;
-                                defended_cards.Add(ListCards[Convert.ToInt32(card_from_user)]);
-                                attacked_list.RemoveAt(i);
-                                ListCards.RemoveAt(Convert.ToInt32(card_from_user));
-                                isTook = false;
-                            }
-                            else if (ListCards[Convert.ToInt32(card_from_user)].IsTrump && attacked_list[i].IsTrump == false)
-                            {
-                                canBeRemoved = true;
-                                defended_cards.Add(ListCards[Convert.ToInt32(card_from_user)]);
-                                attacked_list.RemoveAt(i);
-                                ListCards.RemoveAt(Convert.ToInt32(card_from_user));
-                                isTook = false;
-                            }
-                            /*else
-                            {
-                                Console.WriteLine("Bad!!");
-                            }*/
-                        }
-                        if (canBeRemoved == false)
-                        {
-                            Console.WriteLine("You cannot beat a card with another suit or less worth");
-                        }
+                        Console.WriteLine("You cannot beat a card with another suit or less worth");
                     }
                 }
             }
             return null;
         }
-
+        public List<Card> throwUpCards(List<Card> attacked_cards, List<Card> defended_cards, string name)
+        {
+            List<Card> thrown_cards = new List<Card>(); 
+            Console.WriteLine($"{name} Choose the number of card to throw up. Press 'p' to pass");
+            Console.WriteLine("Battled Cards");
+            Console.WriteLine("----------------------");
+            PrintPlayersCards(attacked_cards);
+            PrintPlayersCards(defended_cards);
+            Console.WriteLine("----------------------");
+            PrintPlayersCards(ListCards);
+            var isRightChosen = false;
+            while (true)
+            {
+                var answer = Console.ReadLine();
+                if(answer != "p")
+                {
+                    for (var i = 0; i < ListCards.Count; i++)
+                    {
+                        if (attacked_cards.Where(x => x.Symbol == ListCards[Convert.ToInt32(answer)].Symbol).Any() ||
+                            defended_cards.Where(x => x.Symbol == ListCards[Convert.ToInt32(answer)].Symbol).Any())
+                        {
+                            thrown_cards.Add(ListCards[Convert.ToInt32(answer)]);
+                            isRightChosen = true;
+                        }
+                    }
+                    if(isRightChosen == false)
+                    {
+                        Console.WriteLine("You can only throw up the cards with the same symbols");
+                    }
+                }
+                else if(answer == "p")
+                {
+                    break;
+                }
+            }
+            return thrown_cards;
+        }
         public void PrintPlayersCards(List<Card> cards)
         {
             var i = 0;

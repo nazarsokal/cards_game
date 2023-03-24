@@ -8,7 +8,7 @@ namespace Cards_Game
     {
         public static void Main(string[] args)
         {
-            Game game = new Game(3);
+            Game game = new Game(5);
             /*foreach (var k in game.GetPlayers())
             {
                 foreach(var j in k.GetListCards())
