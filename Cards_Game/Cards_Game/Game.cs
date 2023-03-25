@@ -10,8 +10,10 @@ namespace Cards_Game
     public class Game
     {
         public static List<Player> players_list = new List<Player>();
+        public static List<Bot> bot_list = new List<Bot>();
         public static List<Card> cards_list = new List<Card>();
         private int player_count = 0;
+        private int bot_count = 0;
 
         public Game(int _player_count)
         {
@@ -62,7 +64,7 @@ namespace Cards_Game
                         }
 
                         if(thrown_cards.Count != 0)
-                            def_res = players_list[i + 1].deffend(thrown_cards);
+                            def_res = players_list[i + 1].deffend(thrown_cards); 
                     }
                 }
 
@@ -72,6 +74,31 @@ namespace Cards_Game
                 }
                 i++;
             }
+        }
+
+        public Game(int _player_count, int _bot_count)
+        {
+            cards_list = Deck.Generate();
+            player_count = _player_count;
+            bot_count = _bot_count;
+            Add_players();
+            DivideCardsByPlayers();
+
+            foreach (var item in bot_list)
+            {
+                Console.WriteLine(item.Name);
+                foreach (var item1 in item.GetListCards())
+                {
+                    Console.WriteLine(item1.Symbol + item1.Suit + " " + item1.IsTrump);
+                }
+                Console.WriteLine();
+            }
+
+            for(var i = 0; i < bot_list.Count; i++)
+            {
+                bot_list[i].attack();
+            }
+
         }
 
         public void DivideCardsByPlayers()
@@ -90,14 +117,38 @@ namespace Cards_Game
                     num = 0;
                 }
             }
+            if(bot_count != 0)
+            {
+                for (var i = 0; i < bot_list.Count; i++)
+                {
+                    if (bot_list[i].GetListCards().Count < 6)
+                    {
+                        while (bot_list[i].GetListCards().Count != 6)
+                        {
+                            bot_list[i].setListCards(cards_list[num]);
+                            Remove_Cards(cards_list[num]);
+                            num++;
+                        }
+                        num = 0;
+                    }
+                }
+            }
         }
 
         public void Add_players()
         {
-            List<string> names = new List<string>() { "Roman", "Nazar", "Yurko", "Oleg", "Ashot"};
-            for(var i = 0; i < player_count; i++)
+            List<string> names = new List<string>() { "Roman", "Nazar"};
+            List<string> bot_names = new List<string>() { "Bot1", "Bot2", "Bot3" };
+            for (var i = 0; i < player_count; i++)
             {
                 players_list.Add(new Player(names[i]));
+            }
+            if (bot_count != 0)
+            {
+                for (var j = 0; j < bot_count; j++)
+                {
+                    bot_list.Add(new Bot(bot_names[j]));
+                }
             }
         }
 
