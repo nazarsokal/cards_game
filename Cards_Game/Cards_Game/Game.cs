@@ -9,14 +9,14 @@ namespace Cards_Game
 {
     public class Game
     {
-        public static List<Player> players_list = new List<Player>();
-        public static List<Bot> bot_list = new List<Bot>();
+        public static List<IPlayer> players_list = new List<IPlayer>();
         public static List<Card> cards_list = new List<Card>();
         private int player_count = 0;
         private int bot_count = 0;
 
-        public Game(int _player_count)
+        public Game(int _player_count, int _bot_count)
         {
+            bot_count = _bot_count;
             cards_list = Deck.Generate();
             player_count= _player_count;
             Add_players();
@@ -27,17 +27,17 @@ namespace Cards_Game
                 Console.WriteLine($"Player: {players_list[i].Name} attacks");
                 List<Card> res = players_list[i].attack();
                 List<Card> def_res;
-                List<Player> buffer_player_list = new List<Player>();
+                List<IPlayer> buffer_player_list = new List<IPlayer>();
                 if(i == (players_list.Count - 1))
                 {
                     Console.WriteLine($"Player: {players_list[0].Name} deffends");
-                    def_res = players_list[0].deffend(res);
+                    def_res = players_list[0].defend(res);
                     i = -1;
                 }
                 else
                 {
                     Console.WriteLine($"Player: {players_list[i + 1].Name} deffends");
-                    def_res = players_list[i + 1].deffend(res);
+                    def_res = players_list[i + 1].defend(res);
 
                     if (players_list[i + 1].isTook && (i + 1) != (players_list.Count - 1))
                     {
@@ -57,14 +57,15 @@ namespace Cards_Game
                         for(var j = 0; j <  buffer_player_list.Count; j++)
                         {
                             throw_res = buffer_player_list[j].throwUpCards(res, def_res, buffer_player_list[j].Name);
-                            foreach (var item in throw_res)
+                            if (throw_res != null)
                             {
-                                thrown_cards.Add(item);
+                                thrown_cards.AddRange(throw_res);
                             }
                         }
 
+                        Console.WriteLine(thrown_cards.Count);
                         if(thrown_cards.Count != 0)
-                            def_res = players_list[i + 1].deffend(thrown_cards); 
+                            def_res = players_list[i + 1].defend(thrown_cards); 
                     }
                 }
 
@@ -74,31 +75,6 @@ namespace Cards_Game
                 }
                 i++;
             }
-        }
-
-        public Game(int _player_count, int _bot_count)
-        {
-            cards_list = Deck.Generate();
-            player_count = _player_count;
-            bot_count = _bot_count;
-            Add_players();
-            DivideCardsByPlayers();
-
-            foreach (var item in bot_list)
-            {
-                Console.WriteLine(item.Name);
-                foreach (var item1 in item.GetListCards())
-                {
-                    Console.WriteLine(item1.Symbol + item1.Suit + " " + item1.IsTrump);
-                }
-                Console.WriteLine();
-            }
-
-            for(var i = 0; i < bot_list.Count; i++)
-            {
-                bot_list[i].attack();
-            }
-
         }
 
         public void DivideCardsByPlayers()
@@ -117,38 +93,20 @@ namespace Cards_Game
                     num = 0;
                 }
             }
-            if(bot_count != 0)
-            {
-                for (var i = 0; i < bot_list.Count; i++)
-                {
-                    if (bot_list[i].GetListCards().Count < 6)
-                    {
-                        while (bot_list[i].GetListCards().Count != 6)
-                        {
-                            bot_list[i].setListCards(cards_list[num]);
-                            Remove_Cards(cards_list[num]);
-                            num++;
-                        }
-                        num = 0;
-                    }
-                }
-            }
         }
 
         public void Add_players()
         {
-            List<string> names = new List<string>() { "Roman", "Nazar"};
+            List<string> names = new List<string>() { "Roman", "Nazar", "Ashot"};
             List<string> bot_names = new List<string>() { "Bot1", "Bot2", "Bot3" };
             for (var i = 0; i < player_count; i++)
             {
                 players_list.Add(new Player(names[i]));
             }
-            if (bot_count != 0)
+
+            for (var i = 0; i < bot_count; i++)
             {
-                for (var j = 0; j < bot_count; j++)
-                {
-                    bot_list.Add(new Bot(bot_names[j]));
-                }
+                players_list.Add(new Bot(bot_names[i]));
             }
         }
 
@@ -157,7 +115,7 @@ namespace Cards_Game
             cards_list.Remove(card);
         }
 
-        public List<Player> GetPlayers()
+        public List<IPlayer> GetPlayers()
         {
             return players_list;
         }

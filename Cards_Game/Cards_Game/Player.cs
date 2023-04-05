@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace Cards_Game
 {
-    public class Player
+    public class Player : IPlayer
     {
-        public List<Card> ListCards = new List<Card>();
+        /*public List<Card> ListCards = new List<Card>();
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public bool isTook = false;
+        public bool isTook = false;*/
 
-        public Player(string name)
+        public string Name { get; private set; }
+
+        public Player(string name) : base(name)
         {
             Name = name;
         }
 
-        public List<Card> attack()
+        public override List<Card> attack()
         {
             List<Card> CardsList_From_User = new List<Card>();
             PrintPlayersCards(ListCards);
@@ -66,16 +68,19 @@ namespace Cards_Game
             }
         }
 
-        public List<Card> deffend(List<Card> attacked_list) 
+        public override List<Card> defend(List<Card> attacked_list) 
         {
+            isTook = false;
             Console.WriteLine("You are attacked by this cards:");
             PrintPlayersCards(attacked_list);
             List<Card> defended_cards = new List<Card>();
 
+            Console.WriteLine("----------------------");
+            PrintPlayersCards(ListCards);
+
             while (true)
             {
                 Console.WriteLine("To deffend choose a number of card. \n To finish defending choose 'f' or 't' to take cards \n Your cards: ");
-                PrintPlayersCards(ListCards);
 
                 Console.WriteLine("count: " + attacked_list.Count);
                 var card_from_user = Console.ReadLine();
@@ -129,7 +134,7 @@ namespace Cards_Game
             }
             return null;
         }
-        public List<Card> throwUpCards(List<Card> attacked_cards, List<Card> defended_cards, string name)
+        public override List<Card> throwUpCards(List<Card> attacked_cards, List<Card> defended_cards, string name)
         {
             List<Card> thrown_cards = new List<Card>(); 
             Console.WriteLine($"{name} Choose the number of card to throw up. Press 'p' to pass");
@@ -166,7 +171,7 @@ namespace Cards_Game
             }
             return thrown_cards;
         }
-        public void PrintPlayersCards(List<Card> cards)
+        public override void PrintPlayersCards(List<Card> cards)
         {
             var i = 0;
             foreach (var card in cards)
@@ -176,12 +181,12 @@ namespace Cards_Game
             }
         }
 
-        public void setListCards(Card card)
+        public override void setListCards(Card card)
         {
             ListCards.Add(card);
         }
 
-        public List<Card> GetListCards()
+        public override List<Card> GetListCards()
         {
             return ListCards;
         }
